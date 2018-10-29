@@ -80,15 +80,17 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="pegawai : ${listPegawai}">
+								<tr th:each="pegawai : ${pegawaiList}">
 									<td th:text="${pegawai.nip}"></td>
 									<td th:text="${pegawai.nama}"></td>
 									<td th:text="${pegawai.tempatLahir}"></td>
 									<td th:text="${pegawai.tanggalLahir}"></td>
 									<td th:text="${pegawai.tahunMasuk}"></td>
 									<td th:text="${pegawai.instansi.nama}"></td>
-									<td th:each="jabatan : ${pegawai.jabatanPegawai}">
-										<p th:text="${jabatan.jabatan.nama}">
+									<td>
+										<ul th:each="jabatanPegawai : ${pegawai.jabatanPegawai}">
+											<li th:text="${jabatanPegawai.nama}"></li>					
+										</ul>
 									</td>
 								</tr>
 							</tbody>

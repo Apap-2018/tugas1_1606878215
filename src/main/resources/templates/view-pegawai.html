@@ -41,7 +41,7 @@
 					<p>
 					<div class="col-5"><b>Jabatan</b></div>
 					<div class="col-7">
-						<div th:each="jabatanPegawai : ${pegawai.jabatan}">
+						<div th:each="jabatanPegawai : ${pegawai.jabatanPegawai}">
 							<span class="badge badge-dark" th:text="${jabatanPegawai.nama}"></span>					
 						</div>
 					</div>
@@ -51,6 +51,9 @@
 					<div class="col-7" th:text="|Rp${gaji}|"></div>
 					<div class="w-100"></div>
 				</div>
+			</div>
+			<div class="card-footer">
+				<a th:href="@{/pegawai/ubah(nip=${pegawai.nip})}" th:text="Ubah" class="btn btn-success" style="margin-right: 5px;"></a>
 			</div>
 		</div>
 	</div>

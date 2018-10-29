@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -29,9 +30,8 @@ public class JabatanModel implements Serializable {
 	private static final long serialVersionUID = 155249570427290490L;
 	
 	@Id
-	@Max(20)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private BigInteger id;
+	private long id;
 	
 	@NotNull
 	@Size(max = 255)
@@ -49,15 +49,15 @@ public class JabatanModel implements Serializable {
 	
 	@ManyToMany(fetch = FetchType.LAZY,
 			cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-			mappedBy = "jabatan")
+			mappedBy = "jabatanPegawai")
 	@JsonIgnore
-	private List<PegawaiModel> pegawai;
+	private @Valid List<PegawaiModel> pegawai;
 
-	public BigInteger getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

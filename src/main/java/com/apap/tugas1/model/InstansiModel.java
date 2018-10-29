@@ -36,9 +36,8 @@ public class InstansiModel implements Serializable {
 	private static final long serialVersionUID = 9024765945878519273L;
 	
 	@Id
-	@Max(20)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private BigInteger id;
+	private long id;
 	
 	@NotNull
 	@Size(max = 255)
@@ -59,11 +58,11 @@ public class InstansiModel implements Serializable {
 	@JsonIgnore
 	private ProvinsiModel provinsi;
 
-	public BigInteger getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

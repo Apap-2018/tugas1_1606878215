@@ -10,11 +10,12 @@
 <body>
 	<nav th:replace="fragments/fragment :: navbar"></nav>
 	<p>
-	<div class="container" style="width: 500px;" >
+	<div class="container-fluid" style="width: 500px;" >
 		<h3>Ubah Jabatan</h3>
 		<form th:action="@{/jabatan/ubah}" method="POST">
 			<div class="form-group">
-				<input type="hidden" class="form-control" name="idJabatan" id="idJabatan" th:value="${idJabatan}" readonly/>
+				<label for="newId">ID:</label>
+				<input class="form-control" name="idJabatan" id="idJabatan" th:value="${idJabatan}" readonly="readonly"/>
 			</div>
 			<div class="form-group">
 				<label for="newNama">Nama:</label>

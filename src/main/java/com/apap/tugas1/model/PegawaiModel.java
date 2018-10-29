@@ -3,7 +3,6 @@ package com.apap.tugas1.model;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -37,9 +36,8 @@ public class PegawaiModel implements Serializable {
 	private static final long serialVersionUID = 4301785943925545170L;
 	
 	@Id
-	@Max(20)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private BigInteger id;
+	private long id;
 	
 	@NotNull
 	@Size(max = 255)
@@ -75,13 +73,13 @@ public class PegawaiModel implements Serializable {
 	@JoinTable(name = "jabatan_pegawai", joinColumns = { @JoinColumn(name = "id_pegawai") }, 
 				inverseJoinColumns = { @JoinColumn(name = "id_jabatan") })
 	@JsonIgnore
-    private List<JabatanModel> jabatan = new ArrayList<JabatanModel>();
+    private List<JabatanModel> jabatanPegawai;
 
-	public BigInteger getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -133,12 +131,12 @@ public class PegawaiModel implements Serializable {
 		this.instansi = instansi;
 	}
 
-	public List<JabatanModel> getJabatan() {
-		return jabatan;
+	public List<JabatanModel> getJabatanPegawai() {
+		return jabatanPegawai;
 	}
 
-	public void setJabatan(List<JabatanModel> jabatan) {
-		this.jabatan = jabatan;
+	public void setJabatanPegawai(List<JabatanModel> jabatanPegawai) {
+		this.jabatanPegawai = jabatanPegawai;
 	}
 
 	public static long getSerialversionuid() {

@@ -29,7 +29,7 @@ public class JabatanController {
 	private JabatanService jabatanService;
 	
 	@RequestMapping("/jabatan/view")
-	public String view(@RequestParam("IdJabatan") BigInteger id, Model model) {
+	public String view(@RequestParam("IdJabatan") long id, Model model) {
 		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);	
 		model.addAttribute("jabatan", jabatan);
 		model.addAttribute("gajiPokok", jabatan.getGajiPokok().intValue());
@@ -58,39 +58,46 @@ public class JabatanController {
 	@RequestMapping(value = "/jabatan/tambah", method = RequestMethod.POST)
 	private String confirmTambah(@ModelAttribute JabatanModel jabatan, Model model) {
 		jabatanService.addJabatan(jabatan);
+		model.addAttribute("jabatan", jabatan);
 		model.addAttribute("addJabatan", true);
 		model.addAttribute("notHome", true);
 		return "add";
 	}
 	
 	@RequestMapping("/jabatan/hapus")
-	private String hapus(@RequestParam("id") BigInteger id, RedirectAttributes rm, Model model) {
-		JabatanModel archive = jabatanService.getJabatanDetailById(id);	
-		if (!archive.getPegawai().isEmpty()) {
+	private String hapus(@RequestParam("id") long id, RedirectAttributes rm, Model model) {
+		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);	
+		if (!jabatan.getPegawai().isEmpty()) {
 			rm.addFlashAttribute("existPegawai", true);
 			rm.addFlashAttribute("notHome", true);
 			return "redirect:/jabatan/view?IdJabatan=" + id;
 		}
+		model.addAttribute("jabatan", jabatan);
 		jabatanService.deleteJabatan(id);
 		return "delete";
 	}
 	
 	@RequestMapping("/jabatan/ubah")
-	private String ubah(@RequestParam("id") BigInteger id, Model model) {
+	private String ubah(@RequestParam("id") long id, Model model) {
 		model.addAttribute("idJabatan", id);
 		model.addAttribute("notHome", true);
 		return "update-jabatan";
 	}
 	
 	@RequestMapping(value = "/jabatan/ubah", method = RequestMethod.POST)
-	public String confirmUbah(@RequestParam("idJabatan") BigInteger id, @RequestParam("newNama") String newNama, @RequestParam("newDeskripsi") String newDeskripsi, 
+	public String confirmUbah(@RequestParam("idJabatan") long id, 
+			@RequestParam("newNama") String newNama, 
+			@RequestParam("newDeskripsi") String newDeskripsi, 
 			@RequestParam("newGajiPokok") Double newGajiPokok, Model model) {
-		JabatanModel archive = jabatanService.getJabatanDetailById(id);
-		archive.setId(id);
-		archive.setNama(newNama);
-		archive.setDeskripsi(newDeskripsi);
-		archive.setGajiPokok(newGajiPokok);
-		jabatanService.addJabatan(archive);
+		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
+		
+		jabatan.setNama(newNama);
+		jabatan.setDeskripsi(newDeskripsi);
+		jabatan.setGajiPokok(newGajiPokok);
+		
+		jabatanService.addJabatan(jabatan);
+		model.addAttribute("jabatan", jabatan);
+		model.addAttribute("updateJabatan", true);
 		model.addAttribute("notHome", true);
 		return "update";
 	}

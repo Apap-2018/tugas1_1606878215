@@ -9,9 +9,14 @@
 
 <body>
 	<nav th:replace="fragments/fragment :: navbar"></nav>
-	<p>
-	<div class="container-fluid" align="center">
-		<h2>Data Berhasil Diubah</h2>
+	<div class="container-fluid float-left" style="width: 700px;">
+		<div class="alert alert-success" role="alert">
+			<h4 class="alert-heading">Sukses!</h4>
+			<p th:if="${updateJabatan}" th:text="|Jabatan dengan ID ${jabatan.id} berhasil diubah|"></p>
+			<p th:if="${updatePegawai}" th:text="|Pegawai dengan NIP ${pegawai.nip} berhasil diubah|"></p>
+			<hr>
+			<a href="/" class="alert-link">Back to homepage</a>
+		</div>
 	</div>
 	<footer th:replace="fragments/fragment :: footer"></footer>
 </body>

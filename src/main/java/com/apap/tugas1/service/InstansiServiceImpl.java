@@ -23,7 +23,7 @@ public class InstansiServiceImpl implements InstansiService {
 	}
 
 	@Override
-	public InstansiModel getInstansiDetailById(BigInteger id) {
+	public InstansiModel getInstansiDetailById(long id) {
 		return instansiDB.findById(id);
 	}
 

@@ -17,6 +17,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "provinsi")
 public class ProvinsiModel implements Serializable {
@@ -27,9 +29,8 @@ public class ProvinsiModel implements Serializable {
 	private static final long serialVersionUID = 4152881170131138840L;
 	
 	@Id
-	@Max(20)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private BigInteger id;
+	private long id;
 	
 	@NotNull
 	@Size(max = 255)
@@ -43,11 +44,11 @@ public class ProvinsiModel implements Serializable {
 	@OneToMany(mappedBy = "provinsi", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<InstansiModel> instansi;
 
-	public BigInteger getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

@@ -6,6 +6,6 @@ import java.util.List;
 import com.apap.tugas1.model.InstansiModel;
 
 public interface InstansiService {
-	InstansiModel getInstansiDetailById(BigInteger id);
+	InstansiModel getInstansiDetailById(long id);
 	List<InstansiModel> getInstansiList();
 }

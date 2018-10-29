@@ -20,16 +20,15 @@ public class JabatanPegawaiModel implements Serializable {
 	private static final long serialVersionUID = 1936050976976624675L;
 	
 	@Id
-	@Max(20)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private BigInteger id;
+	private long id;
 	
 
-	public BigInteger getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(BigInteger id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

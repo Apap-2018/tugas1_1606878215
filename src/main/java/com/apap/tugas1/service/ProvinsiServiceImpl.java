@@ -26,13 +26,13 @@ public class ProvinsiServiceImpl implements ProvinsiService {
 	}
 
 	@Override
-	public ProvinsiModel getProvinsiDetailById(BigInteger id) {
+	public ProvinsiModel getProvinsiDetailById(long id) {
 		return provinsiDB.findById(id);
 	}
 	
 	// Jika difilter dengan provinsi
 	@Override
-	public List<PegawaiModel> getPegawaiInProvinsiById(BigInteger idProvinsi) {
+	public List<PegawaiModel> getPegawaiInProvinsiById(long idProvinsi) {
 		ProvinsiModel provinsi = provinsiDB.findById(idProvinsi);
 		List<PegawaiModel> listPegawai = new ArrayList<>();
 		
@@ -46,12 +46,12 @@ public class ProvinsiServiceImpl implements ProvinsiService {
 	
 	// Jika difilter dengan provinsi dan instansi
 	@Override
-	public List<PegawaiModel> getPegawaiInInstansiInProvinsiById(BigInteger idProvinsi, BigInteger idInstansi) {
+	public List<PegawaiModel> getPegawaiInInstansiInProvinsiById(long idProvinsi, long idInstansi) {
 		ProvinsiModel provinsi = provinsiDB.findById(idProvinsi);
 		InstansiModel instansi = new InstansiModel();
 		
 		for (InstansiModel instansiTujuan : provinsi.getInstansi()) {
-			if (instansiTujuan.getId().equals(idInstansi)) {
+			if (instansiTujuan.getId() == idInstansi) {
 				instansi = instansiTujuan;
 				break;
 			}

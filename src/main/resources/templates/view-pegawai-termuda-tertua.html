@@ -41,7 +41,7 @@
 					<p>
 					<div class="col-5"><b>Jabatan</b></div>
 					<div class="col-7">
-						<div th:each="jabatanPegawai : ${pegawaiTertua.jabatan}">
+						<div th:each="jabatanPegawai : ${pegawaiTertua.jabatanPegawai}">
 							<span class="badge badge-dark" th:text="${jabatanPegawai.nama}"></span>					
 						</div>
 					</div>
@@ -84,7 +84,7 @@
 					<p>
 					<div class="col-5"><b>Jabatan</b></div>
 					<div class="col-7">
-						<div th:each="jabatanPegawai : ${pegawaiTermuda.jabatan}">
+						<div th:each="jabatanPegawai : ${pegawaiTermuda.jabatanPegawai}">
 							<span class="badge badge-dark" th:text="${jabatanPegawai.nama}"></span>					
 						</div>
 					</div>
