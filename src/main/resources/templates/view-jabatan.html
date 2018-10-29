@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<title>Detail Jabatan</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body style="background-color: #eeeeee;">
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<p>
+	<div class="container-fluid" id="view">
+		<div class="card">
+			<div class="card-header bg-dark text-white"><h4 th:text="|Detail Jabatan ${jabatan.nama}|"></h4></div>
+			<div class="card-body" style="font-size: 18px;">
+				<div class="row">
+					<div class="col-5"><b>Nama</b></div>
+					<div class="col-7" th:text="${jabatan.nama}"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Deskripsi</b></div>
+					<div class="col-7" th:text="${jabatan.deskripsi}"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Gaji Pokok</b></div>
+					<div class="col-7" th:text="|Rp${gajiPokok}|"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Jumlah Pegawai</b></div>
+					<div class="col-7" th:text="${jumlahPegawai}"></div>
+					<div class="w-100"></div>
+				</div>
+			</div>
+			<div class="card-footer">
+				<a th:href="@{/jabatan/ubah(id=${jabatan.id})}" th:text="Ubah" class="btn btn-success" style="margin-right: 5px;"></a>
+				<a th:href="@{/jabatan/hapus(id=${jabatan.id})}" th:text="Hapus" class="btn btn-danger" style="margin-right: 5px;"></a>
+			</div>
+		</div>
+		<br>
+		<div th:if="${existPegawai}" class="alert alert-danger" style="width: 500px;" role="alert">
+				Tidak bisa dihapus, ada pegawai yang mengisi jabatan!
+		</div>
+	</div>
+	<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<title>Detail Pegawai</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<p>
+	<div class="container-fluid" id="view">
+		<div class="card">
+			<div class="card-header bg-dark text-white"><h4 th:text="|Lihat Data Pegawai - ${pegawai.nip}|"></h4></div>
+			<div class="card-body" style="font-size: 18px;">
+				<div class="row">
+					<div class="col-5"><b>NIP</b></div>
+					<div class="col-7" th:text="${pegawai.nip}"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Nama</b></div>
+					<div class="col-7" th:text="${pegawai.nama}"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Tempat Lahir</b></div>
+					<div class="col-7" th:text="${pegawai.tempatLahir}"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Tanggal Lahir</b></div>
+					<div class="col-7" th:text="${pegawai.tanggalLahir}"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Tahun Masuk</b></div>
+					<div class="col-7" th:text="${pegawai.tahunMasuk}"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Nama Instansi</b></div>
+					<div class="col-7" th:text="|${pegawai.instansi.nama} - ${pegawai.instansi.provinsi.nama}|"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Jabatan</b></div>
+					<div class="col-7">
+						<div th:each="jabatanPegawai : ${pegawai.jabatan}">
+							<span class="badge badge-dark" th:text="${jabatanPegawai.nama}"></span>					
+						</div>
+					</div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Gaji</b></div>
+					<div class="col-7" th:text="|Rp${gaji}|"></div>
+					<div class="w-100"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>

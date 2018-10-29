@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Tambah Jabatan</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<p>
+	<div class="container-fluid" style="width: 700px;">
+		<div class="card">
+			<div class="card-header bg-dark text-white text-center">
+				<h4>Tambah Jabatan</h4>
+			</div>
+			<div class="card-body">
+				<form th:action="@{/jabatan/tambah}" th:object="${jabatan}" method="POST">
+					<div class="form-group row">
+			    		<label class="control-label col-sm-5">Nama</label>
+			    		<div class="col-sm-7">
+			      			<input type="text" class="form-control" name="nama" id="nama" required="required">
+			    		</div>
+			  		</div>
+			  		<div class="form-group row">
+			    		<label class="control-label col-sm-5">Deskripsi</label>
+			    		<div class="col-sm-7">
+			      			<input type="text" class="form-control" name="deskripsi" id="deskripsi" required="required">
+			    		</div>
+			  		</div>
+			  		<div class="form-group row">
+			    		<label class="control-label col-sm-5">Gaji Pokok</label>
+			    		<div class="col-sm-7">
+			      			<input type="number" min="0" class="form-control" name="gajiPokok" id="gajiPokok" required="required">
+			    		</div>
+			  		</div>
+					<button type="submit" class="btn btn-primary">Simpan</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>

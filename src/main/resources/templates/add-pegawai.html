@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Tambah Pegawai</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<p>
+	<div class="container-fluid" style="width: 700px;">
+		<div class="card">
+			<div class="card-header bg-dark text-white text-center">
+				<h4>Tambah Pegawai</h4>
+			</div>
+			<div class="card-body">
+				<form class="form-horizontal" th:action="@{/pegawai/tambah}" th:object="${pegawai}" method="POST">
+					<div class="form-group row">
+			    		<label for="nama" class="control-label col-sm-5">Nama</label>
+			    		<div class="col-sm-7">
+			      			<input type="text" th:value="*{nama}" class="form-control" name="nama" id="nama" required="required">
+			    		</div>
+			  		</div>
+			  		<div class="form-group row">
+			    		<label for="tempatLahir" class="control-label col-sm-5">Tempat Lahir</label>
+			    		<div class="col-sm-7">
+			      			<input type="text" th:value="*{tempatLahir}" class="form-control" name="tempatLahir" id="tempatLahir" required="required">
+			    		</div>
+			  		</div>
+			  		<div class="form-group row">
+			    		<label for="tanggalLahir" class="control-label col-sm-5">Tanggal Lahir</label>
+			    		<div class="col-sm-7">
+			      			<input type="date" th:value="*{tanggalLahir}" class="form-control" name="tanggalLahir" id="tanggalLahir" required="required">
+			    		</div>
+			  		</div>
+			  		<div class="form-group row">
+			    		<label for="tahunMasuk" class="control-label col-sm-5">Tahun Masuk</label>
+			    		<div class="col-sm-7">
+			      			<input type="text" th:value="*{tahunMasuk}" class="form-control" name="tahunMasuk" id="tahunMasuk" required="required">
+			    		</div>
+			  		</div>
+			  		<div class="form-group row">
+			    		<label for="provinsi" class="control-label col-sm-5">Provinsi</label>
+			    		<div class="input-group col-sm-7">
+							<select class="custom-select provinsi" name="provinsi" id="inputGroupSelect03" required="required">
+						    	<optgroup label="Pilih Provinsi">
+						    		<option hidden="true" selected="selected" disabled="disabled">Pilih Provinsi</option>				    	
+						    		<option th:each="provinsi : ${provinsiList}"  th:value="${provinsi.id}" th:text="${provinsi.nama}"></option>
+						    	</optgroup>
+						  	</select>
+						</div>
+			  		</div>
+			  		<div class="form-group row">
+			    		<label for="instansi" class="control-label col-sm-5">Nama Instansi</label>
+			    		<div class="input-group col-sm-7">
+							<select disabled="disabled" class="custom-select instansi" id="inputGroupSelect03" name="instansi" required="required">
+						  	<optgroup label="Pilih Instansi">
+				    			<option id="labelInstansi" hidden="true" selected="selected" disabled="disabled">Pilih Instansi</option>
+						  	</optgroup>
+						  	</select>
+						</div>
+			  		</div>
+			  		<div class="form-group row">
+			    		<label for="jabatan" class="control-label col-sm-5">Jabatan</label>
+			    		<div class="input-group col-sm-7" th:each="jabatan, iterator : *{jabatan}">
+							<select disabled="disabled" class="custom-select jabatan" th:filed="*{jabatan[__${iterator.index}__]}" id="inputGroupSelect03" name="jabatan" required="required">
+						    	<optgroup label="Pilih Jabatan">
+						    		<option id="labelJabatan" hidden="true" selected="selected" disabled="disabled">Pilih Jabatan</option>
+						    		<option th:each="jab : ${jabatanList}" th:value="${jab.id}" th:text="${jab.nama}"></option>
+						  		</optgroup>
+						  	</select>
+						  	<div style="margin-left: 5px;">
+							  	<button type="submit" class="btn btn-secondary btn-md" name="addRow">+</button>	
+						  	</div>
+						</div>
+			  		</div>
+			  		<button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+
+<script type="text/javascript" th:inline="javascript">
+	$(document).ready(function() {
+	    $('.provinsi').change(function() {
+	    	var idProvinsi = this.value;
+	    	if (11 <= idProvinsi && idProvinsi <= 19) {
+	    		idProvinsi -= 11
+	    	} else if (idProvinsi == 21) {
+	    		idProvinsi -= 12
+	    	} else if (31 <= idProvinsi && idProvinsi <= 36) {
+	    		idProvinsi -= 21
+	    	} else if (51 <= idProvinsi && idProvinsi <= 53) {
+	    		idProvinsi -= 35
+	    	} else if (61 <= idProvinsi && idProvinsi <= 65) {
+	    		idProvinsi -= 42
+	    	} else if (71 <= idProvinsi && idProvinsi <= 76) {
+	    		idProvinsi -= 47
+	    	} else if (81 <= idProvinsi && idProvinsi <= 82) {
+	    		idProvinsi -= 51
+	    	} else if (idProvinsi == 91) {
+	    		idProvinsi -= 59
+	    	} else if (idProvinsi == 94) {
+	    		idProvinsi -= 61
+	    	}
+
+	    	var listProvinsi = [[${provinsiList}]]
+	    	var selectedProvinsi = listProvinsi[idProvinsi].instansi;
+	    	
+	    	$('.instansi').removeAttr('disabled')
+	    	var html = '<optgroup label="Pilih Instansi">';
+		    for (var i = 0 ; i < selectedProvinsi.length ; i++) {
+		    	html += '<option value="' + selectedProvinsi[i].id + '">' + selectedProvinsi[i].nama + '</option>'
+		    	
+		    }
+		    
+		    html += '</option></optgroup>'
+	    	
+		    $('.instansi').html(html);
+	    });
+	    
+	    $('.instansi').change(function() {
+	    	$('#labelInstansi').remove()
+	    	$('.jabatan').removeAttr('disabled')
+	    });
+	    
+	    $('.jabatan').change(function() {
+	    	$('#labelJabatan').remove()
+	    });
+	});
+</script>
+</html>

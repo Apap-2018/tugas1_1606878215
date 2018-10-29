@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<title>404 Not Found</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body id="error">
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<div class="center">
+		<img alt=":(" th:src="@{/images/sad-smiley.png}" width="350px" height="350px">
+		<h1 style="font-size: 180px;">404</h1>
+		<h2>Oops! We can't find the page you're looking for.</h2>			
+	</div>
+</body>
+</html>

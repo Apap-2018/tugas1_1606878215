@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<title>400 Bad Request</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body id="error">
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<div class="center">
+		<!-- <img alt=":(" th:src="@{/images/sad-smiley.png}" width="350px" height="350px"> -->
+		<svg height="100" width="100">
+    		<polygon points="50,25 17,80 82,80" stroke-linejoin="round" style="fill:none;stroke:#ff8a00;stroke-width:8"></polygon>
+    		<text x="42" y="74" fill="#ff8a00" font-family="sans-serif" font-weight="900" font-size="42px">!</text>
+  		</svg>
+		<h1 style="font-size: 44px; font-weight: 300">Bad request (400 error)</h1>	
+		<p class="lead">Periksa kembali data yang anda cari.</p>			
+	</div>
+</body>
+</html>

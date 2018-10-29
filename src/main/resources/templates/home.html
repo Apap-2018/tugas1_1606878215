@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Home Page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<div id="home" class="container-fluid shadow-lg p-5" style="background-color: #eeeeee;">
+		<br>
+		<h1>Sistem Informasi Kepegawaian</h1>
+		<h5>Selamat datang di Sistem Infromasi Kepegawaian</h5>
+		<hr style="height: 3px; background-color: #343a40;">
+		<br>
+		<div class="container" >
+			<div class="card">
+				<div class="card-header"><h4>Lihat Data Pegawai berdasarkan NIP</h4></div>
+				<div class="card-body">
+					<h5>Masukan Nomor Induk Pegawai</h5>
+					<form th:action="@{/pegawai}" method="GET">
+						<div class="form-group">
+							<input type="text" name="nip" class="form-control" placeholder="Masukan NIP" style="width: 300px;" required="required"/>
+						</div>
+						<button type="submit" class="btn btn-primary">Lihat</button>
+					</form>
+				</div>
+			</div>
+			<br>
+			<div class="card">
+				<div class="card-header"><h4>Lihat Detail Jabatan</h4></div>
+				<div class="card-body">
+					<h5>Pilih Jabatan</h5>
+					<form th:action="@{/jabatan/view}" method="GET">
+						<div class="form-group">
+					   		<div class="input-group" style="width: 400px;" >
+								<select class="custom-select" id="inputGroupSelect03 jabatanPegawai" name="IdJabatan" required="required">
+							  		<optgroup label="Pilih Jabatan">
+							    		<option hidden="true" selected="selected">Pilih Jabatan</option>				    	
+							    		<option th:each="jabatan : ${jabatanList}" th:value="${jabatan.id}" th:text="${jabatan.nama}"></option>
+							    	</optgroup>
+							  	</select>
+							</div>
+				 		</div>
+						<button type="submit" class="btn btn-primary">Lihat</button>
+					</form>			
+				</div>
+			</div>
+			<br>
+			<div class="card">
+				<div class="card-header"><h4>Lihat Pegawai Tertua dan Termuda</h4></div>
+				<div class="card-body">
+					<h5>Pilih Instansi</h5>
+					<form th:action="@{/pegawai/termuda-tertua}" method="GET">
+						<div class="form-group">
+					   		<div class="input-group" style="width: 400px;" >
+								<select class="custom-select" id="inputGroupSelect03 instansi" name="instansi" required="required">
+							  		<optgroup label="Pilih Instansi">
+							    		<option hidden="true" selected="selected">Pilih Instansi</option>				    	
+							    		<option th:each="instansi : ${instansiList}" th:value="${instansi.id}" th:text="|${instansi.nama} - ${instansi.provinsi.nama}"></option>
+							    	</optgroup>
+							  	</select>
+							</div>
+				 		</div>
+						<button type="submit" class="btn btn-primary">Lihat</button>
+					</form>			
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>

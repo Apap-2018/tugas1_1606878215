@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Home</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<head th:fragment="css">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/tutorial5.css}">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+	</head>
+	<head th:fragment="js">
+		<script type="text/javascript" th:src="@{/jquery/jquery-3.3.1.min.js}"></script>
+		<script type="text/javascript" th:src="@{/jquery/jquery-1.10.2.js}"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+		<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+	</head>
+</head>
+
+<body>
+	<nav th:fragment="navbar" class="navbar navbar-fixed-top navbar-expand navbar-dark bg-dark shadow p-3">
+		<a class="navbar-brand mb-0 h1" th:href="@{#}">SIPEG</a>
+		
+		<!-- <a th:if="${viewPegawai}" class="navbar-brand mb-0 h1" th:href="@{#}">DETAIL PEGAWAI</a>
+		<a th:if="${addPegawai}" class="navbar-brand mb-0 h1" th:href="@{#}">ADD PEGAWAI</a>
+		<a th:if="${updatePilot}" class="navbar-brand mb-0 h1" th:href="@{#}">UPDATE PILOT</a>
+		<a th:if="${deletePilot}" class="navbar-brand mb-0 h1" th:href="@{#}">DELETE PILOT</a>
+		<a th:if="${daftarPilot}" class="navbar-brand mb-0 h1" th:href="@{#}">DAFTAR PILOT</a>
+		
+		<a th:if="${viewJabatan}" class="navbar-brand mb-0 h1" th:href="@{#}">DETAIL JABATAN</a>
+		<a th:if="${addJabatan}" class="navbar-brand mb-0 h1" th:href="@{#}">ADD JABATAN</a>
+		<a th:if="${daftarJabatan}" class="navbar-brand mb-0 h1" th:href="@{#}">DAFTAR JABATAN</a>
+		<a th:if="${deleteFlight}" class="navbar-brand mb-0 h1" th:href="@{#}">DELETE FLIGHT</a>
+		<a th:if="${daftarFlight}" class="navbar-brand mb-0 h1" th:href="@{#}">DAFTAR FLIGHT</a> -->
+		
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li th:classappend="${home} ? active" class="nav-item">
+					<a class="nav-link" href="/"><i class="fa fa-home fa-fw" style="font-size: 15px;"></i> Home</a>
+				</li>
+				<li th:classappend="${addPegawai} ? active" class="nav-item">
+					<a class="nav-link" href="/pegawai/tambah">Tambah Pegawai</a>
+				</li>
+				<li th:classappend="${addJabatan} ? active" class="nav-item">
+					<a class="nav-link" href="/jabatan/tambah">Tambah Jabatan</a>
+				</li>
+				<li th:classappend="${cariPegawai} ? active" class="nav-item">
+					<a class="nav-link" href="/pegawai/cari">Cari Pegawai</a>
+				</li>
+				<li th:classappend="${daftarJabatan} ? active" class="nav-item">
+					<a class="nav-link" href="/jabatan/viewall">Daftar Jabatan</a>
+				</li>
+			</ul>
+		</div>
+		
+		<form th:if="${notHome}" th:action="@{/pegawai/view}" class="form-inline">
+    		<input class="form-control mr-sm-2" type="text" name="nip" placeholder="Masukan NIP Pegawai" aria-label="Search">
+    		<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Cari</button>
+  		</form>
+	</nav>
+	
+	<footer class="footer bg-dark static-top" th:fragment="footer">
+		<div>
+			<p>&copy; 2018 Coded with love and passion by Ahmad Wigo Prasetya</p>
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<title>Detail Pegawai</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
+	<p>
+	<div class="container-fluid" style="margin-bottom: 20vh;">
+		<div class="card">
+			<div class="card-header"><h4 th:text="|Data Pegawai Tertua|"></h4></div>
+			<div class="card-body" style="font-size: 18px;">
+				<div class="row">
+					<div class="col-5"><b>NIP</b></div>
+					<div class="col-7" th:text="${pegawaiTertua.nip}"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Nama</b></div>
+					<div class="col-7" th:text="${pegawaiTertua.nama}"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Tempat Lahir</b></div>
+					<div class="col-7" th:text="${pegawaiTertua.tempatLahir}"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Tanggal Lahir</b></div>
+					<div class="col-7" th:text="${pegawaiTertua.tanggalLahir}"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Tahun Masuk</b></div>
+					<div class="col-7" th:text="${pegawaiTertua.tahunMasuk}"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Nama Instansi</b></div>
+					<div class="col-7" th:text="|${pegawaiTertua.instansi.nama} - ${pegawaiTertua.instansi.provinsi.nama}|"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Jabatan</b></div>
+					<div class="col-7">
+						<div th:each="jabatanPegawai : ${pegawaiTertua.jabatan}">
+							<span class="badge badge-dark" th:text="${jabatanPegawai.nama}"></span>					
+						</div>
+					</div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Gaji</b></div>
+					<div class="col-7" th:text="|Rp${gajiPegawaiTertua}|"></div>
+					<div class="w-100"></div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="card">
+			<div class="card-header"><h4 th:text="|Data Pegawai Termuda|"></h4></div>
+			<div class="card-body" style="font-size: 18px;">
+				<div class="row">
+					<div class="col-5"><b>NIP</b></div>
+					<div class="col-7" th:text="${pegawaiTermuda.nip}"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Nama</b></div>
+					<div class="col-7" th:text="${pegawaiTermuda.nama}"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Tempat Lahir</b></div>
+					<div class="col-7" th:text="${pegawaiTermuda.tempatLahir}"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Tanggal Lahir</b></div>
+					<div class="col-7" th:text="${pegawaiTermuda.tanggalLahir}"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Tahun Masuk</b></div>
+					<div class="col-7" th:text="${pegawaiTermuda.tahunMasuk}"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Nama Instansi</b></div>
+					<div class="col-7" th:text="|${pegawaiTermuda.instansi.nama} - ${pegawaiTertua.instansi.provinsi.nama}|"></div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Jabatan</b></div>
+					<div class="col-7">
+						<div th:each="jabatanPegawai : ${pegawaiTermuda.jabatan}">
+							<span class="badge badge-dark" th:text="${jabatanPegawai.nama}"></span>					
+						</div>
+					</div>
+					<div class="w-100"></div>
+					<p>
+					<div class="col-5"><b>Gaji</b></div>
+					<div class="col-7" th:text="|Rp${gajiPegawaiTermuda}|"></div>
+					<div class="w-100"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<footer th:replace="fragments/fragment :: footer"></footer>
+</body>
+</html>
